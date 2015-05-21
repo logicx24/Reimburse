@@ -1,0 +1,18 @@
+.navbar-logo {
+  background-color: #004977;
+  border-color: #e7e7e7;
+}
+
+.mod-logo {
+	max-width: 25%;
+	float: left, top;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.btn-employee {
+  color: #ffffff;
+  background-color: #1d6591;
+  border-color: #010203;
+  max-width: 100%;
+}
