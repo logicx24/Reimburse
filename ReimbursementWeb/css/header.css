@@ -11,8 +11,28 @@
 }
 
 .btn-employee {
+  color: #03ff5f;
+  background-color: #1d6591;
+  border-color: #010203;
+  width: 100%;
+  height: 100%;
+
+}
+
+.employeeBorder {
   color: #ffffff;
   background-color: #1d6591;
   border-color: #010203;
-  max-width: 100%;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.inactive {
+	opacity: 0.5;
+}
+
+
+@font-face {
+    font-family: SanFran;
+    src: url(fonts/SanFranciscoThin.ttf);
 }
