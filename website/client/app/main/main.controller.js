@@ -15,6 +15,7 @@ angular.module('websiteApp')
       console.log('yo' + a.id);
     };
     
+
     
     $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
     var trans = function (objectId) {
@@ -51,7 +52,7 @@ angular.module('websiteApp')
 	Parse.initialize(applicationId, javaScriptKey);
     
     //Trips
-	$scope.populateTrips = function(apikey){
+	$scope.populateTrips = function(){
 		var query = new Parse.Query("Trips");
         
    //     query.containedIn("Customer", [customerID]);
@@ -76,4 +77,9 @@ angular.module('websiteApp')
 		  });
 	   };
     });
+    
+    $scope.$on('$viewContentLoaded', function() {      
+        $scope.populateTrips(); 
+    });
+    
 });
