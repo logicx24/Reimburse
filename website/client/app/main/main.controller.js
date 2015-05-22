@@ -6,6 +6,11 @@ angular.module('websiteApp')
 
     $scope.array = [{id:1, value:"test"}, {id:2, value:"test1"}];
 
+        
+    $scope.$on('$viewContentLoaded', function() {      
+        $scope.getdata(); 
+    });
+    
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
     });
@@ -64,7 +69,4 @@ angular.module('websiteApp')
 		  });
 	   }; 
    };
-    
-$scope.$on('$viewContentLoaded', function() {      
-        $scope.getdata(); 
-    });
+});
