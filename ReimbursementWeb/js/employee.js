@@ -31,7 +31,6 @@ $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
 
 	applicationId = "M5W9yL6PGhFQwd1bjtLg9Uaq8LiwrCNuDULXrLpA";
 	javaScriptKey = "CfiSYmOt0TLu8k9xzJObKA6GosGwbIdv5IiyfI4F";
-	//masterKey = "0b7Lzn0GA64iGFeSoJQHwtpZwJa4hAkj23EIVDA5";
 
 	Parse.initialize(applicationId, javaScriptKey);
 
@@ -42,7 +41,7 @@ $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
 		query.find({
 			success: function (results) {
 				for (var i = 0; i < results.length; i++) {
-					finale += '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>' + 'ID:' + results[i]['id'] + '</h3><h1><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-employee">Balance </a></h1></div>'
+					finale += '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>' + 'ID: ' + results[i]['id'] + '</h3><h1><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-employee">Balance </a></h1></div>'
 				}
 				$("#employeeContainer").html(finale);
 			},

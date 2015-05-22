@@ -47,11 +47,12 @@ def text_parsing(extractedText):
 	taxdex = 0
 	print(extracted)
 	for i in range(len(extracted)):
+		extracted[i] = extracted[i].replace("$","")
 		if "ubtot" in extracted[i]:
 			subdex = i
 		if "Tax" in extracted[i]:
 			taxdex = i
-	return float(extracted[subdex].split()[-1]) + float(extracted[taxdex].split()[-1])
+	return round(float(extracted[subdex].split()[-1]) + float(extracted[taxdex].split()[-1]), 2)
 
 @app.route('/images/', methods=['POST'])
 def image_route():
@@ -90,8 +91,8 @@ def image_route():
 		return json.dumps({'error': 'All transactions processed'})
 
 
-if __name__ == "__main__":
-	app.run()
+# if __name__ == "__main__":
+# 	app.run()
 
 #"X-Parse-Application-Id: M5W9yL6PGhFQwd1bjtLg9Uaq8LiwrCNuDULXrLpA" -H "X-Parse-REST-API-Key: D6KZxe2dRp1Wa8Drfpjer0iNOHNZATRkDaXXCR3Z"
 
