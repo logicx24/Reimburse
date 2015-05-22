@@ -67,7 +67,7 @@ angular.module('websiteApp')
                //console.log(trips[m].transactions)
            }
                 //Trips
-				$scope.trips12 = "Yoyo";
+				$scope.trips = "Yoyo";
 //                console.log($scope.trips);
 			},
 			error: function (error) {
