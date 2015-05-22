@@ -3,6 +3,8 @@
 angular.module('websiteApp')
   .controller('MainCtrl', function ($scope, $http, pass) {
     $scope.awesomeThings = [];
+    
+//    $scope.allTrips = 'hiiii';
 
     $scope.array = [{id:1, value:"test"}, {id:2, value:"test1"}];
         
@@ -36,7 +38,8 @@ angular.module('websiteApp')
         }
       });
     }
-  
+  $scope.helloWorld = "hello world"
+  $scope.goodbyeWorld = "goodbye"
 //OnClick of Trip function
 //    $scope.trans = function (objectId) {
 //        var json = [];
