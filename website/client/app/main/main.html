@@ -1,13 +1,11 @@
 <!--<div ng-include="'components/navbar/navbar.html'"></div>-->
 
 <header>
-<!--
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
--->
 </header>
 
 <!--
@@ -28,13 +26,20 @@
     console.log({{transactions}})
 </div>
 -->
-<div ng-init="color=none">
-    <div ng-repeat="a in trips">
-        <div class="cb" ng-click=" = 1" ng-class="{'gray': color==none} || {'approved': color==green} || {'unapproved': color==red}">
-            tab 1
+<h1>Yo</h1>
+
+<!--<div ng-init="color=none">-->
+<!--
+    <div ng-repeat="trip in trips">
+        <div class="row" ng-click="active=1" ng-class="{'gray': color==none} || {'approved': color==green} || {'unapproved': color==red}">
+-->
+                    <p>{{trips12}}</p>
+
+<!--
         </div>
     </div>
-</div>
+-->
+<!--</div>-->
 
 
 <!--

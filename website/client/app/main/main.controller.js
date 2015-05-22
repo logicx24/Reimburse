@@ -17,6 +17,27 @@ angular.module('websiteApp')
     
     
     $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
+    var trans = function (objectId) {
+        var json = [];
+        console.log(objectId);
+        var query = new Parse.Query("Transaction");
+        query.containedIn("Trip", [objectId]);
+        query.find({
+        success: function (transactions) {
+            $scope.transactions = transactions;
+//                    console.log($scope.transactions);
+            for (var j = 0; j < transactions.length; j++) {
+                json.push(transactions[j]);
+            }
+//                    console.log(json);
+//                    console.log(trips);
+//                    console.log(m);
+//                    console.log(trips[m]);
+        }
+      });
+        console.log(json);
+        return json;
+    }
 
 	Parse.$ = jQuery;
 	console.log("Script loaded and executed.");
@@ -36,28 +57,25 @@ angular.module('websiteApp')
    //     query.containedIn("Customer", [customerID]);
         
 		query.find({
-			success: function (results) {
-				$scope.trips = results;
-                console.log($scope.trips);
+			success: function (trips) {
+            //Transactions
+//            console.log('test', trips);
+            var m = 0
+           for (m; m < trips.length; m++){
+               //console.log(trips[m]);
+                trips[m]['transactions'] = trans(trips[m].id);
+               //console.log(trips[m].transactions)
+           }
+                //Trips
+				$scope.trips12 = "Yoyo";
+//                console.log($scope.trips);
 			},
 			error: function (error) {
-				console.log(error);
+			   	console.log(error);
 			}
 		  });
 	   });
     
-    //Transactions
-    $(function populateTransactions (apikey) {
-		var query = new Parse.Query("Transaction");
-		query.find({
-			success: function (results) {
-				$scope.transactions = results;
-                console.log($scope.transactions);
-			},
-			error: function (error) {
-				console.log(error);
-			}
-		  });
-	   });
+
     });
 });
