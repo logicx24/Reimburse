@@ -3,8 +3,8 @@
 angular.module('websiteApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/test', {
-        templateUrl: 'app/main/main.html',
+      .when('/employee', {
+        templateUrl: 'app/main/employee.html',
         controller: 'MainCtrl'
       })
     

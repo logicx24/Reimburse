@@ -1,11 +1,13 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<!--<div ng-include="'components/navbar/navbar.html'"></div>-->
 
-<header class="hero-unit" id="banner">
+<header>
+<!--
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
     <p class="lead">Kick-start your next web app with Angular Fullstack</p>
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
+-->
 </header>
 
 <!--
@@ -21,17 +23,21 @@
 </div>
 -->
 
-<div ng-repeat=">
+<!--
+<div ng-repeat>
     console.log({{transactions}})
 </div>
-
-<div ng-repeat="a in array">
-    <div ng-click="clicked(a)">
-        {{a.id}} == {{a.value}}
+-->
+<div ng-init="color=none">
+    <div ng-repeat="a in trips">
+        <div class="cb" ng-click=" = 1" ng-class="{'gray': color==none} || {'approved': color==green} || {'unapproved': color==red}">
+            tab 1
+        </div>
     </div>
 </div>
 
 
+<!--
 
 <footer class="footer">
   <div class="container">
@@ -40,3 +46,4 @@
          <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
   </div>
 </footer>
+-->
