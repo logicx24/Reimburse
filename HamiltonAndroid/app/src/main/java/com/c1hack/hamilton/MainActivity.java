@@ -64,6 +64,15 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        Button makeTrip = (Button) findViewById(R.id.trip);
+        makeTrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MakeTrip.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -209,7 +218,7 @@ public class MainActivity extends ActionBarActivity {
                 return new TripsFragment();
             }
             else{
-                return new approvedTransactionsFragment();
+                return new SelectedTransactions();
             }
         }
 
@@ -229,7 +238,7 @@ public class MainActivity extends ActionBarActivity {
             return new TripsFragment();
         }
         else{
-            return new approvedTransactionsFragment();
+            return new SelectedTransactions();
         }
     }
 }

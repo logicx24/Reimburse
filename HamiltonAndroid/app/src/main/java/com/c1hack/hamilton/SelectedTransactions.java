@@ -22,7 +22,7 @@ import com.c1hack.hamilton.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class approvedTransactionsFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class SelectedTransactions extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,8 +47,8 @@ public class approvedTransactionsFragment extends Fragment implements AbsListVie
     private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static approvedTransactionsFragment newInstance(String param1, String param2) {
-        approvedTransactionsFragment fragment = new approvedTransactionsFragment();
+    public static SelectedTransactions newInstance(String param1, String param2) {
+        SelectedTransactions fragment = new SelectedTransactions();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,7 +60,7 @@ public class approvedTransactionsFragment extends Fragment implements AbsListVie
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public approvedTransactionsFragment() {
+    public SelectedTransactions() {
     }
 
     @Override
@@ -81,7 +81,7 @@ public class approvedTransactionsFragment extends Fragment implements AbsListVie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_approvedtransactions, container, false);
-
+//        mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);

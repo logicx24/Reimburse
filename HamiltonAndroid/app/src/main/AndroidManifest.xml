@@ -45,6 +45,10 @@
             android:name=".ResponseWait"
             android:label="@string/title_activity_response_wait" >
         </activity>
+        <activity
+            android:name=".MakeTrip"
+            android:label="@string/title_activity_make_trip" >
+        </activity>
     </application>
 
 </manifest>

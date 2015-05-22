@@ -92,6 +92,7 @@ public class TripsFragment extends Fragment implements AbsListView.OnItemClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_completed, container, false);
+//        mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
@@ -103,18 +104,19 @@ public class TripsFragment extends Fragment implements AbsListView.OnItemClickLi
 
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Trip");
         query.whereEqualTo("author", ParseUser.getCurrentUser().getUsername());
-        Log.v("querydata", query.toString());
+        Log.v("trip data", query.toString());
         try {
             list = query.find();
-            Log.v("query info", list.toString());
+            Log.v("trip list", list.toString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         ArrayList<String> stringList = new ArrayList<String>();
         for (ParseObject ob : list){
-            stringList.add(ob.getCreatedAt().toString());
-            Log.v("query data", ob.getCreatedAt().toString());
+            stringList.add(ob.getString("tripname"));
+            Log.v("trip list" +
+                    "", ob.getString("tripname"));
         }
 
         adapter = new ArrayAdapter<String>(getActivity(),
