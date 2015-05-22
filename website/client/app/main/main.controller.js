@@ -17,7 +17,7 @@ angular.module('websiteApp')
     
 
     
-    $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
+   $scope.getdata = function(){
     var trans = function (objectId) {
         var json = [];
         console.log(objectId);
@@ -26,26 +26,18 @@ angular.module('websiteApp')
         query.find({
         success: function (transactions) {
             $scope.transactions = transactions;
-//                    console.log($scope.transactions);
             for (var j = 0; j < transactions.length; j++) {
                 json.push(transactions[j]);
             }
-//                    console.log(json);
-//                    console.log(trips);
-//                    console.log(m);
-//                    console.log(trips[m]);
         }
       });
         console.log(json);
         return json;
     }
+       
+	// jQuery stuff
 
-	Parse.$ = jQuery;
-	console.log("Script loaded and executed.");
-
-	// Use anything defined in the loaded script...
-
-	var applicationId = "M5W9yL6PGhFQwd1bjtLg9Uaq8LiwrCNuDULXrLpA";
+    var applicationId = "M5W9yL6PGhFQwd1bjtLg9Uaq8LiwrCNuDULXrLpA";
 	var javaScriptKey = "CfiSYmOt0TLu8k9xzJObKA6GosGwbIdv5IiyfI4F";
 	//masterKey = "0b7Lzn0GA64iGFeSoJQHwtpZwJa4hAkj23EIVDA5";
 
@@ -55,31 +47,24 @@ angular.module('websiteApp')
 	$scope.populateTrips = function(){
 		var query = new Parse.Query("Trips");
         
-   //     query.containedIn("Customer", [customerID]);
-        
 		query.find({
 			success: function (trips) {
             //Transactions
-//            console.log('test', trips);
             var m = 0
            for (m; m < trips.length; m++){
                console.log(trips[m]);
                 trips[m]['transactions'] = trans(trips[m].id);
-//               console.log(trips[m].transactions)
            }
                 //Trips
 				$scope.trips = "Yoyo";
-//                console.log($scope.trips);
 			},
 			error: function (error) {
 			   	console.log(error);
 			}
 		  });
-	   };
-    });
+	   }; 
+   };
     
-    $scope.$on('$viewContentLoaded', function() {      
-        $scope.populateTrips(); 
+$scope.$on('$viewContentLoaded', function() {      
+        $scope.getdata(); 
     });
-    
-});
