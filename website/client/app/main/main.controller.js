@@ -51,7 +51,7 @@ angular.module('websiteApp')
 	Parse.initialize(applicationId, javaScriptKey);
     
     //Trips
-	$(function populateTrips (apikey) {
+	$scope.populateTrips = function(apikey){
 		var query = new Parse.Query("Trips");
         
    //     query.containedIn("Customer", [customerID]);
@@ -62,9 +62,9 @@ angular.module('websiteApp')
 //            console.log('test', trips);
             var m = 0
            for (m; m < trips.length; m++){
-               //console.log(trips[m]);
+               console.log(trips[m]);
                 trips[m]['transactions'] = trans(trips[m].id);
-               //console.log(trips[m].transactions)
+//               console.log(trips[m].transactions)
            }
                 //Trips
 				$scope.trips = "Yoyo";
@@ -74,8 +74,6 @@ angular.module('websiteApp')
 			   	console.log(error);
 			}
 		  });
-	   });
-    
-
+	   };
     });
 });

@@ -33,7 +33,7 @@
     <div ng-repeat="trip in trips">
         <div class="row" ng-click="active=1" ng-class="{'gray': color==none} || {'approved': color==green} || {'unapproved': color==red}">
 -->
-                    <p>{{trips}}</p>
+                    <p ng-repat = "trip in trips">{{trip}}</p>
 
 <!--
         </div>
