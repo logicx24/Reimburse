@@ -7,13 +7,22 @@ angular.module('websiteApp', [
   'ngRoute',
   'ui.bootstrap'
 ])
-  .config(function ($routeProvider, $locationProvider) {
+
+ .config(function ($routeProvider) {
     $routeProvider
-      .otherwise({
+      .when('/employee', {
+        templateUrl: 'app/main/employee.html',
+        controller: 'MainCtrl'
+      })
+    
+    .when('/', {
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl'
+      })
+    
+    .otherwise({
         redirectTo: '/'
       });
-
-    $locationProvider.html5Mode(true);
   }).
 factory('pass', function() {
     var myData = {};
