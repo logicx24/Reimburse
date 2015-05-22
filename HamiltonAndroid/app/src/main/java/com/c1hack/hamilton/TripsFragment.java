@@ -2,6 +2,7 @@ package com.c1hack.hamilton;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,13 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.c1hack.hamilton.dummy.DummyContent;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -22,7 +30,7 @@ import com.c1hack.hamilton.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class CompletedFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class TripsFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +40,9 @@ public class CompletedFragment extends Fragment implements AbsListView.OnItemCli
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    List<ParseObject> list;
+    ArrayAdapter<String> adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,8 +58,8 @@ public class CompletedFragment extends Fragment implements AbsListView.OnItemCli
     private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static CompletedFragment newInstance(String param1, String param2) {
-        CompletedFragment fragment = new CompletedFragment();
+    public static TripsFragment newInstance(String param1, String param2) {
+        TripsFragment fragment = new TripsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,7 +71,7 @@ public class CompletedFragment extends Fragment implements AbsListView.OnItemCli
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CompletedFragment() {
+    public TripsFragment() {
     }
 
     @Override
@@ -90,11 +101,27 @@ public class CompletedFragment extends Fragment implements AbsListView.OnItemCli
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2" };
 
-        ArrayAdapter<String> files = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1,
-                values);
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Trip");
+        query.whereEqualTo("author", ParseUser.getCurrentUser().getUsername());
+        Log.v("querydata", query.toString());
+        try {
+            list = query.find();
+            Log.v("query info", list.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        mListView.setAdapter(files);
+        ArrayList<String> stringList = new ArrayList<String>();
+        for (ParseObject ob : list){
+            stringList.add(ob.getCreatedAt().toString());
+            Log.v("query data", ob.getCreatedAt().toString());
+        }
+
+        adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1,
+                stringList);
+
+        mListView.setAdapter(adapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);

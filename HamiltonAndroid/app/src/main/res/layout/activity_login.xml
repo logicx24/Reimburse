@@ -16,12 +16,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:singleLine="true"
         android:ems="10"
+        android:hint="username"
         android:id="@+id/ID"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="username"/>
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/PW"
-        android:text="password"
+        android:hint="Enter"
         android:layout_below="@id/ID"
         android:layout_centerHorizontal="true" />
 
