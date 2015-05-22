@@ -33,7 +33,7 @@ angular.module('websiteApp')
 	$(function populateTrips (apikey) {
 		var query = new Parse.Query("Trips");
         
-        query.containedIn("Customer", [customerID]);
+   //     query.containedIn("Customer", [customerID]);
         
 		query.find({
 			success: function (results) {
