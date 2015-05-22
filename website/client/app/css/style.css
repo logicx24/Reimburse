@@ -1,7 +1,36 @@
 .padding {
-    margin-left: 5px;
+    margin-left: 10px;
+    font: SanFranciscoRegular;
 }
+
+html,body { height:100%; }
 
 .button-margin {
     margin-left: 15px;
 }
+
+.bg {
+    background: #E6E6E6;
+}
+
+.blocktest {
+    /* Rectangle 19: */
+background: #E6E6E6;
+border: 1px solid #4A4A4A;
+border-radius: 15px;
+margin-left: 15px;
+}
+
+.large_text {
+/* Ye Old Grille: */
+font-family: SanFranciscoText-Medium;
+font-size: 32px;
+color: #00061F;
+/*line-height: 38px;*/
+}
+
+.right_align{
+    align: right ;
+}
+
+img { max-width: 100%; height: auto; } 
