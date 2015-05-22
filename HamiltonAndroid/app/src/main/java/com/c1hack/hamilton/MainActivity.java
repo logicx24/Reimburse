@@ -1,6 +1,8 @@
 package com.c1hack.hamilton;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -18,9 +20,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
     private static final int NUM_PAGES = 3;
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
+    String username;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        username = ParseUser.getCurrentUser().getUsername().toString();
         pager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
@@ -83,19 +89,22 @@ public class MainActivity extends ActionBarActivity {
                         if(e == null){
                             ParseObject transaction = new ParseObject("Transaction");
                             transaction.put("image", file);
+                            transaction.put("processed", false);
+                            transaction.put("author", username);
                             transaction.saveInBackground(new SaveCallback() {
                                 @Override
                                 public void done(ParseException e) {
-                                    if (e == null){
+                                    if (e == null) {
 
-                                    }
-                                    else{
+                                    } else {
                                         Log.e("ParseObject", "object did not form");
                                     }
                                 }
                             });
 
                             Toast.makeText(MainActivity.this, "Image sent!", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this, ResponseWait.class);
+                            startActivity(intent);
                         }
                         else{
                             Log.e("image error", e.getMessage());
@@ -134,6 +143,43 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    ParseUser current = ParseUser.getCurrentUser();
+    private void createAndShowAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Log Out?");
+        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                final Intent intent = new Intent(MainActivity.this, Login.class);
+                ParseUser.logOutInBackground(new LogOutCallback() {
+
+
+                    @Override
+                    public void done(com.parse.ParseException e) {
+                        if (e == null) {
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "registration failed!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        createAndShowAlertDialog();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -160,7 +206,7 @@ public class MainActivity extends ActionBarActivity {
                 return new TransactionsFragment();
             }
             if(position == 1) {
-                return new CompletedFragment();
+                return new TripsFragment();
             }
             else{
                 return new approvedTransactionsFragment();
@@ -172,6 +218,18 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public int getCount() {
             return NUM_PAGES;
+        }
+    }
+
+    public android.support.v4.app.Fragment getItem(int position) {
+        if(position == 0) {
+            return new TransactionsFragment();
+        }
+        if(position == 1) {
+            return new TripsFragment();
+        }
+        else{
+            return new approvedTransactionsFragment();
         }
     }
 }
