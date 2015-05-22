@@ -75,7 +75,6 @@ def image_route():
 	if len(result['results'] > 0):
 		open('receipts/{0}.jpg'.format('s' + str(r)),'w').write(urllib.urlopen(result['results'][0]['Receipt']['url']).read())
 		price = text_parsing(image_to_text('s{0}.jpg'.format(str(r))))
-		r += 1
 		connection = httplib.HTTPSConnection('api.parse.com', 443)
 		connection.connect()
 		connection.request('PUT', '/1/classes/Transaction/' + result['results'][0]['objectId'], json.dumps({
