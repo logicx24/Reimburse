@@ -36,13 +36,13 @@ $.getScript("https://parse.com/downloads/javascript/parse-1.4.2.js", function(){
 	Parse.initialize(applicationId, javaScriptKey);
 
 	$(function populateCustomers (apikey) {
-		txt = '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>ID: ######</h3><h1><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-employee">Balance </a></h1></div>'
+		txt = '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>ID: ######</h3><h1><a href="#">Balance </a></h1></div>'
 		finale = ""
 		var query = new Parse.Query(Parse.User);
 		query.find({
 			success: function (results) {
 				for (var i = 0; i < results.length; i++) {
-					finale += '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>' + 'ID:' + results[i]['id'] + '</h3><h1><a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-employee">Balance </a></h1></div>'
+					finale += '<div class="col-xs-3 employeeBorder"><h3>Name</h3><h3>' + 'ID:' + results[i]['id'] + '</h3><h1><a href="/">Balance </a></h1></div>'
 				}
 				$("#employeeContainer").html(finale);
 			},
