@@ -104,7 +104,26 @@ public class MainActivity extends ActionBarActivity {
                                 @Override
                                 public void done(ParseException e) {
                                     if (e == null) {
+//                                        HttpClient httpclient = new DefaultHttpClient();
+//                                        HttpPost httppost = new HttpPost("127.0.0.1:5000");
 
+//                                        try {
+//                                            // Add your data
+//                                            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//                                            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+//                                            nameValuePairs.add(new BasicNameValuePair("image", file.toString()));
+//                                            nameValuePairs.add(new BasicNameValuePair("processed", "false"));
+//                                            nameValuePairs.add(new BasicNameValuePair("author", username));
+//                                            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//
+//                                            // Execute HTTP Post Request
+//                                            HttpResponse response = httpclient.execute(httppost);
+//
+//                                        } catch (ClientProtocolException e) {
+                                            // TODO Auto-generated catch block
+//                                        } catch (IOException er) {
+//                                            // TODO Auto-generated catch block
+//                                        }
                                     } else {
                                         Log.e("ParseObject", "object did not form");
                                     }
@@ -186,7 +205,8 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        createAndShowAlertDialog();
+//        MainActivity.this.finish();
+        System.exit(0);
     }
 
     @Override

@@ -49,6 +49,10 @@
             android:name=".MakeTrip"
             android:label="@string/title_activity_make_trip" >
         </activity>
+        <activity
+            android:name=".DataView"
+            android:label="@string/title_activity_data_view" >
+        </activity>
     </application>
 
 </manifest>

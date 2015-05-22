@@ -13,4 +13,5 @@
     <color name="blue">#009FE3</color>
     <color name="white">#FFFFFF</color>
     <string name="title_activity_make_trip">MakeTrip</string>
+    <string name="title_activity_data_view">DataView</string>
 </resources>

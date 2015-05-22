@@ -3,6 +3,7 @@ package com.c1hack.hamilton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,23 +32,26 @@ public class Login extends ActionBarActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("Login bruh", "loggggg");
                 final Intent intent = new Intent(Login.this, MainActivity.class);
-
-//                ParseObject testObject = new ParseObject("user");
-//                testObject.put(username, password);
-//                testObject.saveInBackground();
                 username = ((EditText) findViewById(R.id.ID)).getText().toString();
                 password = ((EditText) findViewById(R.id.PW)).getText().toString();
+                Log.v("Login bruh", username);
+                Log.v("Login bruh", password);
+
+
+
                 ParseUser.logInInBackground(username, password, new LogInCallback() {
                     @Override
                     public void done(ParseUser parseUser, com.parse.ParseException e) {
-
+                        Log.v("Login bruh", password);
                         if (parseUser != null) {
                             startActivity(intent);
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "invalid user!", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
 
