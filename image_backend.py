@@ -72,10 +72,23 @@ def image_route():
 	result = json.loads(connection.getresponse().read())
 	#image = imageJSON.body['images'][listIndex]
 	#open('receipts/s{0}.jpg'.format(str(r)), 'w').write(lr)
-	open('receipts/{0}.jpg'.format('s' + str(r)),'w').write(urllib.urlopen(result['results'][0]['Receipt']['url']).read())
-	price = text_parsing(image_to_text('s{0}.jpg'.format(str(r))))
-	r += 1
-	return json.dumps({'price':price})
+	if len(result['results'] > 0):
+		open('receipts/{0}.jpg'.format('s' + str(r)),'w').write(urllib.urlopen(result['results'][0]['Receipt']['url']).read())
+		price = text_parsing(image_to_text('s{0}.jpg'.format(str(r))))
+		r += 1
+		connection = httplib.HTTPSConnection('api.parse.com', 443)
+		connection.connect()
+		connection.request('PUT', '/1/classes/Transaction/' + result['results'][0]['objectId'], json.dumps({
+			"Processed": True
+			}), {
+			"X-Parse-Application-Id": appID,
+			"X-Parse-REST-API-Key": restKey,
+			"Content-Type": "application/json"
+		})
+		#result = json.loads(connection.getresponse().read())
+		return json.dumps({'price':price})
+	else:
+		return json.dumps({'error': 'All transactions processed'})
 
 
 if __name__ == "__main__":
